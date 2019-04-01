@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Datamap from 'datamaps/dist/datamaps.world.min.js';
 import d3 from 'd3';
-import CanadaJson from './Canada.topo.json';
+import RaleighJson from './Raleigh-Zip.topojson';
 
 class ChoroplethMap extends Component {
     componentDidMount() {
@@ -33,14 +33,14 @@ class ChoroplethMap extends Component {
 
         let map = new Datamap({
             element: document.getElementById('cloropleth_map'),
-            scope: 'canada',
+            scope: 'Raleigh-Zip',
             geographyConfig: {
                 popupOnHover: true,
                 highlightOnHover: true,
                 borderColor: '#444',
                 highlightBorderWidth: 1,
                 borderWidth: 0.5,
-                dataJson: CanadaJson,
+                dataJson: RaleighJson,
                 popupTemplate: function (geo, data) {
                     // don't show tooltip if country don't present in dataset
                     if (!data) { return; }
@@ -61,8 +61,8 @@ class ChoroplethMap extends Component {
             data: dataset,
             setProjection: function (element) {
                 var projection = d3.geo.mercator()
-                    .center([-106.3468, 68.1304]) // always in [East Latitude, North Longitude]
-                    .scale(200)
+                    .center([-78.6409,35.7742]) // always in [East Latitude, North Longitude]
+                    .scale(300)
                     .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
 
                 var path = d3.geo.path().projection(projection);
